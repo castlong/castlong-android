@@ -1,0 +1,5 @@
+include ':castlong-util'
+include ':castlong-core'
+include ':castlong-android-dialog'
+include ':app'
+rootProject.name = "castlong-android"

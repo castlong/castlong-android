@@ -1,0 +1,52 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+    compileSdkVersion 30
+    buildToolsVersion "29.0.3"
+
+    project.setCommonConfig android,false,""
+    project.setCompileOptions android
+    project.openViewBinding android
+
+    defaultConfig {
+        versionCode 1
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    //test
+    testImplementation project.testDep.junit
+    androidTestImplementation project.testDep.androidx_test_ext
+    androidTestImplementation project.testDep.androidx_test_espresso
+
+    //kotlin
+    api project.kotlinDep.kotlin_stdlib_jdk8
+    api project.kotlinDep.core_ktx
+
+    //android
+    api project.androidDep.appcompat
+    api project.androidDep.constraintlayout
+    api project.androidDep.material
+    api project.androidDep.constraintlayout
+
+    //immersionBar
+    api project.immersionbarDep.immersionbar
+    api project.immersionbarDep.immersionbar_ktx
+
+    api project.commonDep.permissionx
+    api project.commonDep.autosize
+
+
+
+}

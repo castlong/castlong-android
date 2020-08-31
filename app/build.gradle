@@ -1,0 +1,34 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+
+    project.setCommonConfig android, true, "org.zhuhailong.androidrecord"
+
+    project.setCompileOptions android
+
+    project.openViewBinding android
+
+    defaultConfig {
+        versionCode 1
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+
+    api project(':castlong-core')
+    implementation project(':castlong-android-dialog')
+    implementation project(':castlong-util')
+
+
+}

@@ -1,0 +1,41 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+android {
+
+    project.setCommonConfig android,false,""
+    project.setCompileOptions android
+    project.openViewBinding android
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 30
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    //test
+    testImplementation project.testDep.junit
+    androidTestImplementation project.testDep.androidx_test_ext
+    androidTestImplementation project.testDep.androidx_test_espresso
+
+    //kotlin
+    implementation project.kotlinDep.kotlin_stdlib_jdk8
+    implementation project.kotlinDep.core_ktx
+
+    //android
+    implementation project.androidDep.appcompat
+    implementation project.androidDep.constraintlayout
+    implementation project.androidDep.material
+    implementation project.androidDep.constraintlayout
+
+}

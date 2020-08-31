@@ -1,0 +1,70 @@
+ext {
+
+    //基础的编译配置
+    setCommonConfig = {
+        extension, typeIsApplication, appId ->
+            extension.compileSdkVersion 30
+            extension.buildToolsVersion "29.0.3"
+            extension.defaultConfig {
+                if (typeIsApplication) {
+                    applicationId appId
+                }
+                minSdkVersion 21
+                targetSdkVersion 29
+
+                testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+                if (!typeIsApplication) {
+                    consumerProguardFiles 'consumer-rules.pro'
+                }
+
+                vectorDrawables.useSupportLibrary true
+                multiDexEnabled true
+            }
+
+    }
+
+    //设置组件化前缀
+    setResourcePrefix = {
+        extension, prefix ->
+            extension.resourcePrefix prefix
+    }
+
+    //配置清单文件位置
+    setManifestLocation = {
+        extension, typeIsApplication ->
+            extension.sourceSets {
+                if (typeIsApplication) {
+                    main.manifest.srcFile 'src/main/manifest/AndroidManifest.xml'
+                } else {
+                    main.manifest.srcFile 'src/main/AndroidManifest.xml'
+                }
+            }
+    }
+
+    //设置java版本
+    setCompileOptions = {
+        it.compileOptions {
+            sourceCompatibility = 1.8
+            targetCompatibility = 1.8
+        }
+
+        it.kotlinOptions {
+            jvmTarget = "1.8"
+        }
+
+    }
+
+    //打开ViewBinding
+    openViewBinding = {
+        it.buildFeatures.viewBinding true //gradle高版本
+    }
+
+    //打开dataBinding
+    openDataBinding = {
+        it.dataBinding {
+            enabled true
+        }
+    }
+
+
+}
